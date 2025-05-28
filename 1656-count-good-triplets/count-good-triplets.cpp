@@ -30,7 +30,8 @@ public:
         int count = 0;
         for (int i=0; i<arr.size()-2; i++){
             for (int k=i+2; k<arr.size(); k++){
-                if (abs(arr[i] - arr[k]) <= c){
+                if (abs(arr[i] - arr[k]) > c) continue;
+                else {
                     for (int j=i+1; j<k; j++){
                         if ((abs(arr[j] - arr[k]) <= b) && (abs(arr[i] - arr[j]) <= a)){
                             count++;
