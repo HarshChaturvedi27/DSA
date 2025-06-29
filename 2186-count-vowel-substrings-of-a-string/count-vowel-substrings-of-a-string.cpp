@@ -1,3 +1,26 @@
+// brute n2 using set
+// class Solution {
+// public:
+//     int countVowelSubstrings(string word) {
+//         int n = word.length();
+//         int count = 0;
+//         unordered_set<char> vowels = {'a', 'e', 'i', 'o', 'u'};
+
+//         for (int i = 0; i < n; i++) {
+//             unordered_map<char, int> freq;
+//             for (int j = i; j < n; j++) {
+//                 if (vowels.count(word[j]) == 0) break;  // Stop on consonant
+                
+//                 freq[word[j]]++;
+
+//                 if (freq.size() == 5) count++;  // Found all 5 distinct vowels
+//             }
+//         }
+
+//         return count;
+//     }
+// };
+
 // INCORRECT
 // class Solution {
 // public:
