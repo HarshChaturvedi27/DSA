@@ -8,7 +8,8 @@ public:
         for (int i = 0; i < nums.size(); i++){
             prefixSum += nums[i];
             // if (prefixSum == k) cnt++;
-            if (mpp.find(prefixSum - k) != mpp.end()) cnt += mpp[prefixSum - k];
+            // if (mpp.find(prefixSum - k) != mpp.end()) cnt += mpp[prefixSum - k];
+            cnt += mpp[prefixSum - k];
             mpp[prefixSum]++;
         }
         return cnt;
