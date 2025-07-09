@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int maxFreeTime(int eventTime, int k, vector<int>& startTime, vector<int>& endTime) {
+        // INCORRECT
+        // priority_queue<int> maxh;
+        // int l = 0, r = 0, i = 0, sum = 0;
+        // while(i < startTime.size()){
+        //     r = startTime[i];
+        //     maxh.push(r - l);
+        //     l = endTime[i];
+        //     i++;
+        // }
+        // if (l < eventTime) maxh.push(eventTime - l);
+        // for (int i = 0; i <= k; i++){
+        //     sum += maxh.top();
+        //     maxh.pop();
+        // }
+        // return sum;
+
+        int n = startTime.size();
+        vector<int> gaps(n+1);
+
+        for (int i = 1; i < n; i++){
+            gaps[i] = startTime[i] - endTime[i-1];
+        }
+        gaps[0] = startTime[0];
+        gaps[n] = eventTime - endTime[n-1];
+
+        int sum = 0, maxi = INT_MIN;
+        for (int i = 0; i < k+1; i++){
+            sum += gaps[i];
+        }
+        maxi = max(sum, maxi);
+
+        int i = 0, j = k + 1;
+        while(j < n+1){
+            sum -= gaps[i++];
+            sum += gaps[j++];
+            maxi = max(maxi, sum);
+        }
+        return maxi;
+    }
+};
