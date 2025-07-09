@@ -2,23 +2,17 @@ class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
         int cnt = 0;
-        int sum = 0;
-        int i = 0, j = 1;
-        while (i<nums.size()-1){
-            if (nums[i] == k) cnt++;
-            sum = nums[i] + nums[j];
-            while (j<nums.size()){
-                if (sum == k){
-                    cnt++;
-                }
-                j++;
-                if (j == nums.size()) break;
-                sum = sum + nums[j];
+        unordered_map<int, int> mpp;
+        int prefixSum = 0;
+        for (int i = 0; i < nums.size(); i++){
+            prefixSum += nums[i];
+            if (prefixSum == k) cnt++;
+            // if (mpp.find(prefixSum - k) != mpp.end()) cnt++;
+            for (auto it : mpp){
+                if (it.first == prefixSum - k) cnt += it.second;
             }
-            i++;
-            j = i+1;
+            mpp[prefixSum]++;
         }
-        if (nums[i] == k) cnt++;
         return cnt;
     }
 };
