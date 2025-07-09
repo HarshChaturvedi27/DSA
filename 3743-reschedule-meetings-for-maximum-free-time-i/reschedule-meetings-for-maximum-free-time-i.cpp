@@ -20,18 +20,23 @@ public:
         int n = startTime.size();
         vector<int> gaps(n+1);
 
+        //calc all gaps
         for (int i = 1; i < n; i++){
             gaps[i] = startTime[i] - endTime[i-1];
         }
-        gaps[0] = startTime[0];
-        gaps[n] = eventTime - endTime[n-1];
+        gaps[0] = startTime[0]; // before first event
+        gaps[n] = eventTime - endTime[n-1]; // after last event
 
+        // we neend to check for max of sum of all contiguous gaps of size k + 1
+        // Sliding window of size k + 1
+        // Initial window sum
         int sum = 0, maxi = INT_MIN;
         for (int i = 0; i < k+1; i++){
             sum += gaps[i];
         }
         maxi = max(sum, maxi);
 
+        // Slide the window
         int i = 0, j = k + 1;
         while(j < n+1){
             sum -= gaps[i++];
