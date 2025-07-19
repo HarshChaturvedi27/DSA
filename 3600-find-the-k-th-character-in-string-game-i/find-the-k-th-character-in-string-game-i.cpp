@@ -3,7 +3,7 @@ public:
     char kthCharacter(int k) {
         string s = "a";
         int r = 0;
-        while (r < s.length()){
+        while (s.length() < k){
             int n = s.length();
             r = 0;
             while (r < n){
