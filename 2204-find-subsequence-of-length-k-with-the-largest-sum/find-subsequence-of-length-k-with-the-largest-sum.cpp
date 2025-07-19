@@ -1,30 +1,51 @@
 class Solution {
 public:
     vector<int> maxSubsequence(vector<int>& nums, int k) {
-        vector<pair<int, int>> numsWithIndices;
-        for (int i = 0; i < nums.size(); i++) {
-            numsWithIndices.push_back({nums[i], i});
+        vector<pair<int, int>> ans;
+        vector<int> v;
+        priority_queue<pair<int, int>> maxh;
+        for (int i = 0; i < nums.size(); i++){
+            maxh.push({nums[i], i});
         }
-
-        // Sort by value descending
-        sort(numsWithIndices.begin(), numsWithIndices.end(),
-             [](const pair<int, int>& a, const pair<int, int>& b) {
-                 return a.first > b.first;
-             });
-
-        // Take top k and sort by original index
-        vector<pair<int, int>> topK(numsWithIndices.begin(), numsWithIndices.begin() + k);
-        sort(topK.begin(), topK.end(),
-             [](const pair<int, int>& a, const pair<int, int>& b) {
-                 return a.second < b.second;
-             });
-
-        // Extract values
-        vector<int> result;
-        for (auto& p : topK) {
-            result.push_back(p.first);
+        for (int i = 0; i < k; i++){
+            ans.push_back({maxh.top().second, maxh.top().first});
+            maxh.pop();
         }
-
-        return result;
+        sort(ans.begin(), ans.end());
+        for (auto it : ans){
+            v.push_back(it.second);
+        }
+        return v;
     }
 };
+
+// class Solution {
+// public:
+//     vector<int> maxSubsequence(vector<int>& nums, int k) {
+//         vector<pair<int, int>> numsWithIndices;
+//         for (int i = 0; i < nums.size(); i++) {
+//             numsWithIndices.push_back({nums[i], i});
+//         }
+
+//         // Sort by value descending
+//         sort(numsWithIndices.begin(), numsWithIndices.end(),
+//              [](const pair<int, int>& a, const pair<int, int>& b) {
+//                  return a.first > b.first;
+//              });
+
+//         // Take top k and sort by original index
+//         vector<pair<int, int>> topK(numsWithIndices.begin(), numsWithIndices.begin() + k);
+//         sort(topK.begin(), topK.end(),
+//              [](const pair<int, int>& a, const pair<int, int>& b) {
+//                  return a.second < b.second;
+//              });
+
+//         // Extract values
+//         vector<int> result;
+//         for (auto& p : topK) {
+//             result.push_back(p.first);
+//         }
+
+//         return result;
+//     }
+// };
