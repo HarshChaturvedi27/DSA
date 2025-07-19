@@ -15,23 +15,19 @@ public:
         ListNode* odd = head;
         ListNode* even = head;
         ListNode* temp = head->next;
-        while (odd){
+        while (odd->next && odd->next->next){
             even = even->next;
             odd->next = odd->next->next;
             odd = odd->next;
             if (even->next->next){
                 even->next = even->next->next;
             } else {
-                odd->next = temp;
                 even->next = NULL;
-                return head;
+                break;
             }
             even = odd;
-            if (!odd->next || !odd->next->next) {
-                odd->next = temp;
-                return head;
-            }
         }
+        odd->next = temp;
         return head;
     }
 };
