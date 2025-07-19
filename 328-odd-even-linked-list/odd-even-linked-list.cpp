@@ -13,21 +13,39 @@ public:
     ListNode* oddEvenList(ListNode* head) {
         if (!head || !head->next || !head->next->next) return head;
         ListNode* odd = head;
-        ListNode* even = head;
+        ListNode* even = head->next;
         ListNode* temp = head->next;
         while (odd->next && odd->next->next){
-            even = even->next;
             odd->next = odd->next->next;
             odd = odd->next;
-            if (even->next->next){
-                even->next = even->next->next;
-            } else {
-                even->next = NULL;
-                break;
-            }
-            even = odd;
+            even->next = even->next->next;
+            even = even->next;
         }
         odd->next = temp;
         return head;
     }
 };
+
+// class Solution {
+// public:
+//     ListNode* oddEvenList(ListNode* head) {
+//         if (!head || !head->next || !head->next->next) return head;
+//         ListNode* odd = head;
+//         ListNode* even = head;
+//         ListNode* temp = head->next;
+//         while (odd->next && odd->next->next){
+//             even = even->next;
+//             odd->next = odd->next->next;
+//             odd = odd->next;
+//             if (even->next->next){
+//                 even->next = even->next->next;
+//             } else {
+//                 even->next = NULL;
+//                 break;
+//             }
+//             even = odd;
+//         }
+//         odd->next = temp;
+//         return head;
+//     }
+// };
