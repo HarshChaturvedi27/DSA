@@ -30,11 +30,11 @@ public:
         if (prev) {
             prev->next = slow->next;
             delete slow;
-        } else {
-            // This case handles 2-node lists where we delete the first node
-            ListNode* newHead = head->next;
-            //delete head; // LC dosent support this
-            return newHead;
+        // } else {
+        //     // This case handles 2-node lists where we delete the first node
+        //     ListNode* newHead = head->next;
+        //     //delete head; // LC dosent support this
+        //     return newHead;
         }
         
         return head;
