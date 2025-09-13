@@ -1,20 +1,24 @@
 class Solution {
 public:
     string sortVowels(string s) {
-        multiset<char> s1;
-        //unordered_set<int> st; //wrong, will not work
-        set<int> st;
-        for (int i = 0; i < s.length(); i++){
-            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U'){
-                s1.insert(s[i]);
-                st.insert(i);
+        multiset<char> vowels;
+        vector<int> indices;
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s[i];
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+                c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+                vowels.insert(c);
+                indices.push_back(i);
             }
         }
-        while(st.size()){
-            s[*st.begin()] = *s1.begin();
-            st.erase(st.begin());
-            s1.erase(s1.begin());
+        
+        auto it = vowels.begin();
+        for (int idx : indices) {
+            s[idx] = *it;
+            it++;
         }
+        
         return s;
     }
 };
