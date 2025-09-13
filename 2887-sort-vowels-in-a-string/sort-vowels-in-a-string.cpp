@@ -2,6 +2,7 @@ class Solution {
 public:
     string sortVowels(string s) {
         multiset<char> s1;
+        //unordered_set<int> st; //wrong, will not work
         set<int> st;
         for (int i = 0; i < s.length(); i++){
             if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U'){
